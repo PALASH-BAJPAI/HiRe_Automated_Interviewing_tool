@@ -1,0 +1,35 @@
+<nav class="navbar navbar-expand-sm navbar-light bg-white my-0 p-1  px-5 sticky-top" >
+    <div class="container-fluid ">
+
+      <a class="navbar-brand" href="/">
+          <img src="static\images\logo.png" alt="" width="110" height="55" class="d-inline-block align-text-baseline">
+      </a>
+
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+        <ul class="navbar-nav ">
+
+          <li class="nav-item">
+            <a class="nav-link fs-5 fw-bold mx-3 active " style="color: #0078E7" aria-current="page" href="{{url_for('home')}}">Home</a>
+          </li>
+
+          <li class="nav-item">
+              <a class="nav-link fs-5 fw-bold mx-3 active" style="color: #0078E7" aria-current="page" href="{{url_for('platform')}}">Platform</a>
+          </li>
+
+          <li class="nav-item">
+              <a class="nav-link fs-5 fw-bold mx-3 active" style="color: #0078E7" aria-current="page" href="{{url_for('blogs')}}">Blogs</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link fs-5 fw-bold mx-3 active" style="color: #0078E7" href="{{url_for('about')}}">About</a>
+          </li>	
+
+        </ul>		  
+      </div>
+    </div>
+</nav>

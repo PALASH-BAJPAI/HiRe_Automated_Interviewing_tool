@@ -1,0 +1,69 @@
+
+
+a {
+    text-decoration: none;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+} 
+
+table {
+  border-collapse: collapse;
+  align-content: center;
+  width: 50%;
+}
+
+
+table, td, th {  
+  border: 1px solid #ddd;
+  text-align: center;
+}
+
+
+.column {
+  align-content:center;
+  float: left;
+  width: 50%;
+  height: 100%;
+}
+
+.column_home {
+  align-content:center;
+  float: left;
+  width: 33%;
+  height: 100%;
+}
+
+
+.center_text {
+  align-content:center;
+  width: 50%;
+  vertical-align: middle;
+  text-align:justify;
+  text-align-last: center;
+}
+
+#left-col {
+  align-content:center;
+  text-align: center;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+#right-col {
+  align-content:center;
+	text-align: center;
+}
+
+
