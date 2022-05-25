@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>HiRe </title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"> 
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script></head>
+  <link rel="icon" type="image/png" sizes="32x32" href="/static/images/favicon.png">
+
+<body style="background:url('static/back.jpg'); background-size: cover; background-attachment: fixed;">    
+
+<!-- Navbar -->
+	{% include "header.html" %}
+
+
+
+<!-- Page top  -->
+
+
+    
+    <div class="container"  >
+
+        <div class="row" style="background:url('back.jpg');">
+
+
+            
+          <div class="col-4">
+            <div class="col py-5">
+                <img src="static\images\about-head.png" class="rounded float-start" alt="..." style="width:80%;height:80%">
+
+              </div>
+          </div>
+
+
+          <div class="col-8 py-5">
+            <h1 style="color:#0078E7; font-size:100px" class="mt-5">HiRe</h1>
+            <h2 style="color:black; font-size:20px;margin-left:80px">I to an employee</h2>
+
+            <h2 style="color:#0078E7; font-size:35px">Better recruitment</h2>
+            <h2 style="color:#0078E7; font-size:35px">With better platform</h2>
+
+            <p class="mt-4" style="text-align: justify;">
+                The traditional interview is a test of the personality traits of many hiring
+                managers. However, there are some limitations to the traditional interview
+                method. Besides being time-consuming, it can be difficult for some candidates or interviewers to read candidates because there is no way to know what
+                their voice sounds like under stress or how to properly grade an applicant
+                based on how they responded. The Prosodic feature can help elicit information about emotions, confidence, anxiety, etc, which can help interviewers
+                evaluate candidates. In addition, by extracting recordings from pre-existing
+                audio and applying NLP and other machine learning models, we were able to
+                score the responses of the interviewees. Therefore, in our project, we use machine learning to accelerate candidate evaluation using advanced features and
+                NLP and ultimately rely on reliable data that is less susceptible to human
+                biases thus improving the interviewers’ ability to make a hiring decision
+            </p>
+
+          </div>
+
+
+
+
+        </div>
+
+      </div>
+
+
+
+
+<!-- Blue Block  -->
+
+<div class="d-flex bd-highlight" style="height:130px; background:#002F5B">
+
+    <div class="p-2 flex-fill bd-highlight text-center fs-2 py-5" style="color:white"> How this works ?</div>
+
+</div>
+
+
+<div class="container">
+    <div class="row m-5">
+
+        <div class="col mx-5 py-5" style="border: 3px dashed #0078E7;border-radius: 30px; background:white">
+            <h4 class="text-center my-4" style="color:#002F5B">Audio Analysis</h4>
+            <div>
+                <img src="static\images\audioModel.png" class="rounded float-start m-2" alt="..." style="width:100%;height:80%">
+                <p>A total of 6 emotions are recognized by our audio analysis model
+                    namely calm, happy, sad, angry, fearful, surprised, and disgusted. This model
+                    will tell which emotion was predominant for your speech and also shows emotion distribution. This will also return a comparison of your emotional distribution with that of others. This emotion distribution will be converted to
+                    scores to grade your interview.</p>
+            </div>
+        </div>
+      
+      
+      
+        <div class="col mx-5 py-5" style="border: 3px dashed #0078E7;border-radius: 30px; background:white">
+            <h4 class="text-center my-4" style="color:#002F5B">Lexical Analysis</h4>
+            <div>
+                <img src="static\images\textModel.png" class="rounded float-start m-2" alt="..." style="width:100%;height:80%">
+                <p>Our text analysis model will evaluate a total of five personality traits that can affect your interview namely openness, conscientiousness,
+                    extraversion, agreeableness, and neuroticism. The model shows which traits
+                    dominate the response and also shows the distribution of personality traits.
+                    It also returns the result of comparing your distribution to others. This distribution of personality traits translates into scores for interview scores.</p>
+            </div>
+        </div>
+      
+      
+    </div>
+    
+    <div class="row m-5">
+        <div class="col mx-5 py-5" style="border: 3px dashed #0078E7;border-radius: 30px; background:white">
+            <h4 class="text-center my-4" style="color:#002F5B">Final Score</h4>
+            <ul class="mx-5 px-5">
+                <li>Final score is evaluated on the basis of how much different factors affect your interview. We only consider here prosodic and lexical features however 
+                video and face expression also contribute to scoring. </li>
+                <li>Prosody reflects our speaking style, particularly the rhythm and the intonation of speech. Prosodic features have been shown to be effective for social intent modeling.
+                The important prosodic features include pitch information, vocal intensities, characteristics of the first three formants, and spectral energy, which have been reported 
+                to reflect our social traits. To reflect the vocal pitch, we extracted the mean and standard deviation of fundamental frequency F0 (F0 MEAN and F0 SD), the 
+                minimum and maximum values (F0 MIN, F0 MAX), and the total range (F0 MAX - F0 MIN).</li>
+                <li>Lexical features can provide valuable information regarding the interview content and the interviewee’s personality. One of the most commonly used lexical features is the unigram counts for each individual word. However, treating unigram counts as features often results 
+                in sparse high-dimensional feature vectors, and suffers from the “curse of dimensionality” problem, especially for a limited sized corpus</li>
+            </ul>
+        </div>
+      
+    </div>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Footer  -->
+
+{% include 'footer.html' %}
+
+
+
+</body>
+</html>

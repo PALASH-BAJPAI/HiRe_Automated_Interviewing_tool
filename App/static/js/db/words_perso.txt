@@ -1,0 +1,4 @@
+WORDS,FREQ
+hello,2
+nice,1
+meet,1

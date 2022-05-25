@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>HiRe </title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"> 
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script></head>
+  <link rel="icon" type="image/png" sizes="32x32" href="/static/images/favicon.png">
+
+
+<body style="background:url('static/back.jpg'); background-size: cover; background-attachment: fixed;">    
+
+<!-- Navbar -->
+	{% include "header.html" %}
+
+
+
+<!-- Page top  -->
+
+
+    
+    <div class="container" ">
+
+        <div class="row" style="background:url('back.jpg');">
+
+          <div class="col py-5">
+            <h1 style="color:#0078E7; font-size:100px" class="mt-5">HiRe</h1>
+            <h2 style="color:#0078E7; font-size:45px">The future of</h2>
+            <h2 style="color:#0078E7; font-size:45px">HR interviews</h2>
+
+            <h4 class="mt-4">
+                Improve the way you find, attract, and hire talent with<br>
+                HiRe. Our enterprise-grade software automates your<br>
+                workflow, making it easy to scale your recruitment. With<br>
+                an artificial intelligence system that selects the best <br>
+                candidate for your job through  emotional and personal <br>
+                evaluation.
+            </h4>
+
+          </div>
+
+
+          <div class="col">
+            <div class="col py-5">
+                <img src="static\images\saly.png" class="rounded float-end" alt="..." style="width:99%;height:99%">
+
+              </div>
+          </div>
+
+
+        </div>
+
+      </div>
+
+
+
+<!-- Blue Block  -->
+
+<div class="d-flex bd-highlight" style="height:230px; background:#002F5B">
+
+    <div class="p-2 flex-fill bd-highlight text-center fs-2 py-5" style="color:white"> 75% <br>Better Hiring</div>
+    <div class="p-2 flex-fill bd-highlight text-center fs-2 py-5" style="color:white">60%<br>Decrease in hiring<br>time</div>
+    <div class="p-2 flex-fill bd-highlight text-center fs-2 py-5" style="color:white">200+<br>Interviews Done</div>
+</div>
+
+<img src="static\images\working.png" class="img-fluid" alt="Work process">
+
+
+<!-- Shadow div  -->
+
+<div class="mx-auto p-5 my-4" style="width:65%;background:white; border: solid black 2px;border-radius:50px;box-shadow: 7px 9px 14px 1px rgba(0,0,0,0.34);">
+
+    <h1 class="mt-4 px-3" style="color:#3F51B5">Looking for a better way to evaluate
+        candidates? </h1>
+    
+    <h4 class="mb-4 px-3" style="text-align: justify;">HiRe makes HR interviewing easy. It provides a faster, fairer
+        and friendly recruitment process for both the recruiting team
+        and candidates. We evaluate people's feelings and personal 
+        qualities to select the best candidate for the job. Highly
+        modifiable rating methods allow companies to rate people based
+        on their preferences.
+    </h4>
+
+
+</div>
+
+
+<!-- Start Div  -->
+<div class="p-5" style="background:url('static/images/startbg.png');width:100%; background-size: cover; background-attachment: fixed;">
+
+    <h1 class="my-5" style="font-size:60px;">What are you waiting for ?</h1>
+    <button type="button" class="btn btn-primary mb-5" style="border-radius:20px"><a href="{{url_for('platform')}}" style="text-decoration:none;color:white;"><h3 class="px-3 py-1" style="letter-spacing: 2px;">Start Hiring</h3></a></button>
+
+</div>
+
+
+<!-- Why Hire Div  -->
+<p class="text-center m-5 fs-2 fw-bolder" >Why Hire ?</p>
+
+<div class="container">
+    <div class="row m-5">
+
+        <div class="col mx-5 py-5" style="border: 3px dashed #0078E7;border-radius: 30px; background:white">
+            <h4 class="text-center my-4" style="color:#002F5B">Faster Assessment</h4>
+            <ul class="m-4" style="text-align: justify;">
+                <li>Create a wider network with 2x the number of candidates considered</li>
+                <li>Drive 24/7 continuous conversations  with conversational AI across all channels. Save recruiters time with automation and on-demand interviews</li>
+                <li>We empower recruiting teams to assess candidate potential and true fit, expand talent pool and reduce lead times</li>
+            </ul>
+        </div>
+      
+      
+      
+        <div class="col mx-5 py-5" style="border: 3px dashed #0078E7;border-radius: 30px; background:white">
+            <h4 class="text-center my-4" style="color:#002F5B">Better Experience</h4>
+            <ul class="m-4" style="text-align: justify;">
+                <li>Both sides of the hiring table want the same thing – an experience that is easy, fast, and more fair</li>
+                <li>Remove candidates weak points with automatic text updates and allow candidates to showcase their skills at their own pace beyond resumes with audio interviews and reviews</li>
+                <li>Remove repetitive tasks from your hiring team’s plate, empowering them to focus on human connections</li>
+            </ul>
+        </div>
+      
+      
+    </div>
+    
+    <div class="row m-5">
+        <div class="col mx-5 py-5" style="border: 3px dashed #0078E7;border-radius: 30px; background:white">
+            <h4 class="text-center my-4" style="color:#002F5B">Fair Hiring</h4>
+            <ul class="m-4" style="text-align: justify;">
+                <li>As an AI tool, it does not discriminate against anyone on the basis of caste, religion, gender, etc. Only skill matters</li>
+                <li>Technology validated by data scientists and organizational psychologists to actively combat bias and enable science-based hiring decisions</li>
+                <li>Irrespective of the interviewer, all interviewees will be evaluated on the same basis</li>
+            </ul>
+        </div>
+      
+        <div class="col mx-5 py-5" style="border: 3px dashed #0078E7;border-radius: 30px; background:white">
+            <h4 class="text-center my-4" style="color:#002F5B">Cost Saving</h4>
+            <ul class="m-4" style="text-align: justify;">
+                <li>Digital transformation in recruitment is no longer an asset. Taking it to the next level with  technology  will ensure you position your business for success and get the best ROI possible on hiring.</li>
+                <li>Better recruitment at lesser time and less manual work helping company to do more efficient work with a better team.</li>
+                <li>Save the cost of office and interviewer</li>
+            </ul>
+        </div>
+    </div>
+
+
+</div>
+
+
+
+<!-- Footer  -->
+
+{% include 'footer.html' %}
+
+
+
+</body>
+</html>

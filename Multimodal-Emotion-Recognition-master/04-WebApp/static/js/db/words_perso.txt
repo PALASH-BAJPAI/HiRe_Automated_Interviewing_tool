@@ -1,3 +1,0 @@
-WORDS,FREQ
-nice,1
-meet,1

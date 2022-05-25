@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="/static/CSS/style.css">
+      <script type="text/javascript" src="/static/js/d3/d3.js"></script>
+      <script src="//d3js.org/d3-scale-chromatic.v0.3.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-tip/0.7.1/d3-tip.min.js"></script>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"> 
+      <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script></head>
+      <link rel="icon" type="image/png" sizes="32x32" href="/static/images/favicon.png">
+      
+      <title>HiRe-Dashboard</title>
+
+      <style>
+        .graph {
+          font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+          width: 960px;
+          height: 500px;
+          position: relative;
+        }
+        
+        svg {
+            width: 100%;
+            height: 100%;
+        }
+        
+        path.slice{
+            stroke-width:2px;
+        }
+        
+        polyline{
+            opacity: .3;
+            stroke: black;
+            stroke-width: 2px;
+            fill: none;
+        }
+
+        </style>
+
+    
+
+  </head>
+
+  <body style="background:url('static/back.jpg'); background-size: cover; background-attachment: fixed;">    
+    <h1 class="text-center m-5">REPORT</h1>
+    
+
+    <div class="m-5 px-5 pt-5" style="border:3px dashed blue; background:white; border-radius:60px;padding-bottom:200px">
+
+        <div>
+            <p class="fs-5" style="color:#3F51B5">Interviewee Name : <b>{{name}}</b></p>
+            <p class="fs-5" style="color:#3F51B5">Job Position : <b>{{position}}</b></p>
+        </div>
+
+
+        <div class="mx-auto my-5 p-1" style="background:#d2e9ff52;width:80%; border-radius:20px">
+            <p class="text-center fs-5">INTERVIEW SCORE</p>
+            <p class="text-center fs-2 fw-bold" style="color:#0078E7">{{score}}</p>
+        </div>
+
+
+        
+<!-- Center Line -->
+<hr class="m-5 px-5" style="color:white;height:1px;opacity:1;border-top:3px dashed #0078E7;">
+
+
+        <h3 class="text-center m-5 p-3">PERSONALITY & EMOTIONS ANALYSIS</h3>
+
+        <div class = "container">
+            <div class="row py-4 mb-5">                
+                <!-- .......................................................................................... -->
+
+                <div class="col-3">
+                    <p class=" fs-4 fw-bold">PERSONALITY TRAITS</p>  
+                    <p>Most apparent personality trait : </p>
+                    <p class="fw-bold"> {{t_trait}} </p>
+                    <div class="parent">
+                        <p>Psychological Traits : </p>
+                        <ul align="left">
+                        <li>Extraversion : {{t_traits[0]}}%</li>
+                        <li>Neuroticism : {{t_traits[1]}}%</li>
+                        <li>Agreeableness : {{t_traits[2]}}%</li>
+                        <li>Conscientiousness : {{t_traits[3]}}%</li>
+                        <li>Openness : {{t_traits[4]}}%</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-9">
+
+                    <div class="graph " >    
+                                        
+                        <script src="https://d3js.org/d3.v3.min.js"></script>
+                        <script>
+                            
+                        
+                        var svg = d3.select(".graph")
+                            .append("svg")
+                            .append("g")
+                        
+                        svg.append("g")
+                            .attr("class", "slices");
+                        svg.append("g")
+                            .attr("class", "labels");
+                        svg.append("g")
+                            .attr("class", "lines");
+                        
+                        var width = 960,
+                            height = 450,
+                            radius = Math.min(width, height) / 2;
+                        
+                        var pie = d3.layout.pie()
+                            .sort(null)
+                            .value(function(d) {
+                                return d.value;
+                            });
+                        
+                        var arc = d3.svg.arc()
+                            .outerRadius(radius * 0.8)
+                            .innerRadius(radius * 0.4);
+                        
+                        var outerArc = d3.svg.arc()
+                            .innerRadius(radius * 0.9)
+                            .outerRadius(radius * 0.9);
+                        
+                        svg.attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
+                        
+                        var key = function(d){ return d.data.label; };
+                        
+                        var color = d3.scale.ordinal()
+                            .domain(['Extraversion', 'Neuroticism', 'Agreeableness', 'Conscientiousness', 'Openness'])
+                            .range(["#f79256", "#fbd1a2", "#7dcfb6", "#00b2ca", "#1d4e89"]);
+                        
+                        function randomData (){
+                            var labels = color.domain();
+                            var value=["{{t_traits[0]}}","{{t_traits[1]}}","{{t_traits[2]}}","{{t_traits[3]}}","{{t_traits[4]}}"];
+                            return labels.map(function(label,index){
+                                return { label: label, value: value[index] }
+                            });
+                        }
+                        
+                        change(randomData());
+                        
+                        d3.select(".randomize")
+                            .on("click", function(){
+                                change(randomData());
+                            });
+                        
+                        
+                        function change(data) {
+                        
+                            /* ------- PIE SLICES -------*/
+                            var slice = svg.select(".slices").selectAll("path.slice")
+                                .data(pie(data), key);
+                        
+                            slice.enter()
+                                .insert("path")
+                                .style("fill", function(d) { return color(d.data.label); })
+                                .attr("class", "slice");
+                        
+                            slice		
+                                .transition().duration(1000)
+                                .attrTween("d", function(d) {
+                                    this._current = this._current || d;
+                                    var interpolate = d3.interpolate(this._current, d);
+                                    this._current = interpolate(0);
+                                    return function(t) {
+                                        return arc(interpolate(t));
+                                    };
+                                })
+                        
+                            slice.exit()
+                                .remove();
+                        
+                            /* ------- TEXT LABELS -------*/
+                        
+                            var text = svg.select(".labels").selectAll("text")
+                                .data(pie(data), key);
+                        
+                            text.enter()
+                                .append("text")
+                                .attr("dy", ".35em")
+                                .text(function(d) {
+                                    return d.data.label;
+                                });
+                            
+                            function midAngle(d){
+                                return d.startAngle + (d.endAngle - d.startAngle)/2;
+                            }
+                        
+                            text.transition().duration(1000)
+                                .attrTween("transform", function(d) {
+                                    this._current = this._current || d;
+                                    var interpolate = d3.interpolate(this._current, d);
+                                    this._current = interpolate(0);
+                                    return function(t) {
+                                        var d2 = interpolate(t);
+                                        var pos = outerArc.centroid(d2);
+                                        pos[0] = radius * (midAngle(d2) < Math.PI ? 1 : -1);
+                                        return "translate("+ pos +")";
+                                    };
+                                })
+                                .styleTween("text-anchor", function(d){
+                                    this._current = this._current || d;
+                                    var interpolate = d3.interpolate(this._current, d);
+                                    this._current = interpolate(0);
+                                    return function(t) {
+                                        var d2 = interpolate(t);
+                                        return midAngle(d2) < Math.PI ? "start":"end";
+                                    };
+                                });
+                        
+                            text.exit()
+                                .remove();
+                        
+                            /* ------- SLICE TO TEXT POLYLINES -------*/
+                        
+                            var polyline = svg.select(".lines").selectAll("polyline")
+                                .data(pie(data), key);
+                            
+                            polyline.enter()
+                                .append("polyline");
+                        
+                            polyline.transition().duration(1000)
+                                .attrTween("points", function(d){
+                                    this._current = this._current || d;
+                                    var interpolate = d3.interpolate(this._current, d);
+                                    this._current = interpolate(0);
+                                    return function(t) {
+                                        var d2 = interpolate(t);
+                                        var pos = outerArc.centroid(d2);
+                                        pos[0] = radius * 0.95 * (midAngle(d2) < Math.PI ? 1 : -1);
+                                        return [arc.centroid(d2), outerArc.centroid(d2), pos];
+                                    };			
+                                });
+                            
+                            polyline.exit()
+                                .remove();
+                        };
+                        </script>
+                   
+                        
+                    </div>
+                    
+                </div>
+
+
+
+
+            </div>
+        </div>
+
+
+        <!-- 2nd  -->
+
+        <div class = "container">
+            <div class="row">
+
+                <div class="col-3 mt-4">
+                    <p class=" fs-4 fw-bold">EMOTIONAL TRAITS</p> 
+                    <p>Most apparent emotion :</p>
+                    <p class="fw-bold"> {{a_emo}} </p>
+                        <div class="parent">
+                          <p>Emotion's analysis : </p>
+                          <ul align="left">
+                            <li>🟥 Angry    : {{a_prob[0]}}%</li>
+                            <li>🟦 Fear     : {{a_prob[2]}}%</li>
+                            <li>🟧 Neutral  : {{a_prob[4]}}%</li>
+                            <li>🟨 Happy    : {{a_prob[3]}}%</li>
+                            <li>🟫 Surprise : {{a_prob[6]}}%</li>
+                            <li>🟩 Disgust  : {{a_prob[1]}}%</li>
+                            <li>⬛ Sad      : {{a_prob[5]}}%</li>
+                          </ul>
+                        </div>
+                </div>
+
+                <div class="col-9 my-5">
+
+                    </div class="graph ">
+                            <script>
+                            
+                            var svg = d3.select(".graph")
+                                .append("svg")
+                                .append("g")
+                            
+                            svg.append("g")
+                                .attr("class", "slices");
+                            svg.append("g")
+                                .attr("class", "labels");
+                            svg.append("g")
+                                .attr("class", "lines");
+                            
+                            var width = 960,
+                                height = 450,
+                                radius = Math.min(width, height) / 2;
+                            
+                            var pie = d3.layout.pie()
+                                .sort(null)
+                                .value(function(d) {
+                                    return d.value;
+                                });
+                            
+                            var arc = d3.svg.arc()
+                                .outerRadius(radius * 0.8)
+                                .innerRadius(radius * 0.4);
+                            
+                            var outerArc = d3.svg.arc()
+                                .innerRadius(radius * 0.9)
+                                .outerRadius(radius * 0.9);
+                            
+                            svg.attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
+                            
+                            var key = function(d){ return d.data.label; };
+
+
+                            
+                            var color = d3.scale.ordinal()
+                                .domain(["Angry","Fear", "Neutral", "Happy", "Surprise","Disgust","Sad",])
+                                .range(["#FF0000", "#0000FF", "#ed6c12", "#FFFF00", "#964B00", " #00FF00", " #000"]);
+                            
+                            function randomData (){
+                                var labels = color.domain();
+                                var value=["{{a_prob[0]}}","{{a_prob[2]}}","{{a_prob[4]}}","{{a_prob[3]}}","{{a_prob[6]}}","{{a_prob[1]}}","{{a_prob[5]}}"];
+                                return labels.map(function(label,index){
+                                    return { label: label, value: value[index]+4}
+                                });
+                            }
+                            
+                            change(randomData());
+                            
+                            d3.select(".randomize")
+                                .on("click", function(){
+                                    change(randomData());
+                                });
+                            
+                            
+                            function change(data) {
+                            
+                                /* ------- PIE SLICES -------*/
+                                var slice = svg.select(".slices").selectAll("path.slice")
+                                    .data(pie(data), key);
+                            
+                                slice.enter()
+                                    .insert("path")
+                                    .style("fill", function(d) { return color(d.data.label); })
+                                    .attr("class", "slice");
+                            
+                                slice		
+                                    .transition().duration(1000)
+                                    .attrTween("d", function(d) {
+                                        this._current = this._current || d;
+                                        var interpolate = d3.interpolate(this._current, d);
+                                        this._current = interpolate(0);
+                                        return function(t) {
+                                            return arc(interpolate(t));
+                                        };
+                                    })
+                            
+                                slice.exit()
+                                    .remove();
+                            
+                                /* ------- TEXT LABELS -------*/
+                            
+                                var text = svg.select(".labels").selectAll("text")
+                                    .data(pie(data), key);
+                            
+            
+                            
+                                text.transition().duration(1000)
+                                    .attrTween("transform", function(d) {
+                                        this._current = this._current || d;
+                                        var interpolate = d3.interpolate(this._current, d);
+                                        this._current = interpolate(0);
+                                        return function(t) {
+                                            var d2 = interpolate(t);
+                                            var pos = outerArc.centroid(d2);
+                                            pos[0] = radius * (midAngle(d2) < Math.PI ? 1 : -1);
+                                            return "translate("+ pos +")";
+                                        };
+                                    })
+                                    .styleTween("text-anchor", function(d){
+                                        this._current = this._current || d;
+                                        var interpolate = d3.interpolate(this._current, d);
+                                        this._current = interpolate(0);
+                                        return function(t) {
+                                            var d2 = interpolate(t);
+                                            return midAngle(d2) < Math.PI ? "start":"end";
+                                        };
+                                    });
+                            
+                                text.exit()
+                                    .remove();
+                            
+                                /* ------- SLICE TO TEXT POLYLINES -------*/
+                            
+                                var polyline = svg.select(".lines").selectAll("polyline")
+                                    .data(pie(data), key);
+                                
+                                polyline.enter()
+                                    .append("polyline");
+                            
+                                polyline.transition().duration(1000)
+                                    .attrTween("points", function(d){
+                                        this._current = this._current || d;
+                                        var interpolate = d3.interpolate(this._current, d);
+                                        this._current = interpolate(0);
+                                        return function(t) {
+                                            var d2 = interpolate(t);
+                                            var pos = outerArc.centroid(d2);
+                                            pos[0] = radius * 0.95 * (midAngle(d2) < Math.PI ? 1 : -1);
+                                            return [arc.centroid(d2), outerArc.centroid(d2), pos];
+                                        };			
+                                    });
+                                
+                                polyline.exit()
+                                    .remove();
+                            };
+                            
+                            </script>
+
+                        </div>
+                
+                </div>
+            </div>
+            
+        </div>
+ </div>
+
+
+
+    
+<!-- Back Button -->
+<form style="width:100%; display:flex;justify-content:center" >
+    <a href="{{url_for('platform')}} ">
+      <input class="btn btn-secondary fs-5 px-4" type="button" value="Back">
+    </a>
+</form>
+<br>
+
+
+
+
+
+
+<!-- Footer  -->
+
+{% include 'footer.html' %}  
+
+
+
+</body>
+
+</html>
